@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "pmmalloc.h": "c",
+        "__locale": "c",
+        "ios": "c"
+    }
+}

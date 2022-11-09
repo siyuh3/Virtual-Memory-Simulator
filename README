@@ -1,0 +1,32 @@
+How to run the project:
+    - Decompress the .tar file and change the file location
+    - Run 
+        $ make pmmalloc 
+      to compile the code
+    - Run 
+        $ ./pmmalloc 
+      to run the project
+    - Run 
+        $ make clean 
+      to clean up all the .class files
+
+Design:
+  1. Heap function partition:
+    a. 0/2 - 1/2 heap is used for storing information
+    b. 5/8 - 3/4 heap is used for storing page table
+    c. 3/4 - 4/4 heap is used for storing FIFO algorithm
+  2. We set heap size of 20 KB and page size of 1 KB. You can increase the heap size. However, this will result more data initialzation to start showing the page in and page out effect.
+  3. Secondary storage is a folder. Swap out page is store in [process_id]_[VPN].txt and the buffer information is stored in the file.
+  4. We use FIFO for page swapping.
+
+Some assuption:
+  1. Size of the memory for data storage: 9 Pages
+  2. Size of each page table: 31 PTE
+  3. Size of secondary memory: very large
+  4. Maximum amount of memory that can be allocated at a time is equal to a single page
+
+Some simplification:
+  1. You will see "The last page cannot be used to avoid segmentation" if you used all the pages for memory. If we use up all the memory, there will one 'pm_stc' going out of the memory, resulting an block size of -40, which is definitely what we don't want. Therefore, we just make the last page unusable to avoid the problem.
+
+  2. We introduce some offset within some data strcuture like 'pt_head' or use 'long' to align to the size of 8.
+
